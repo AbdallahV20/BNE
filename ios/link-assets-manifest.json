@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/GemunuLibre-Bold.ttf",
+      "sha1": "661072c62e132114df3581a19f142f0b60b67d35"
+    },
+    {
+      "path": "assets/fonts/GemunuLibre-Regular.ttf",
+      "sha1": "bac4d38efd5fd73b41a9fac4fb1a9b802784c0da"
+    }
+  ]
+}
