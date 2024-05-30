@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import {View,Text,TextInput,TouchableOpacity, StyleSheet} from 'react-native';
 import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -8,15 +7,16 @@ import { ThemeContext } from '../../App';
 export default function SetPasswordInput({label,placeholder,focus,handleFocus,handlePassword}:any) : React.JSX.Element {
     const [hidePassword,setHidePassword] = useState(true);
     const {theme} = useContext(ThemeContext);
+    const styles = getStyle(theme,focus);
     return (
-        <View style={[styles.mobileContainer,{borderColor:focus ? '#007236' : theme === 'dark' ? '#777' : '#ddd',backgroundColor: theme === 'dark' ? '#121212' : 'white'}]}>
+        <View style={styles.mobileContainer}>
         <Text style={styles.mobile}>{label}</Text>
         <TextInput
             maxLength={20}
             onChangeText={(e:string)=>handlePassword(e)}
             onFocus={()=>handleFocus(true)}
             onBlur={()=>handleFocus(false)}
-            style={[styles.input,{color : theme === 'dark' ? 'white' : 'black'}]}
+            style={styles.input}
             placeholder={placeholder}
             placeholderTextColor="#B7B7B7"
             secureTextEntry={hidePassword}
@@ -31,18 +31,20 @@ export default function SetPasswordInput({label,placeholder,focus,handleFocus,ha
     );
 }
 
-const styles = StyleSheet.create({
+const getStyle = (theme:string,focus:boolean) =>
+    StyleSheet.create({
     mobileContainer : {
         marginTop:20,
-        backgroundColor:'#fff',
         borderWidth:1,
         borderRadius:10,
+        borderColor:focus ? '#007236' : theme === 'dark' ? '#777' : '#ddd',
+        backgroundColor: theme === 'dark' ? '#121212' : 'white',
     },
     input : {
-        color:'black',
         paddingTop:35,
         paddingBottom:11,
         paddingHorizontal:50,
+        color : theme === 'dark' ? 'white' : 'black',
 
     },
     mobile : {

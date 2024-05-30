@@ -7,15 +7,19 @@ type IconProps = {
     label: string;
     icon: IconProp;
   };
-const TabBarIcon =  ({ color,label,icon }:IconProps) =>(
-    <View >
-        <View style={styles.container}>
-            <FontAwesomeIcon icon={icon} size={30} color={color} />
+const TabBarIcon =  ({ color,label,icon }:IconProps) =>{
+    const styles = getStyle(color);
+    (
+        <View >
+            <View style={styles.container}>
+                <FontAwesomeIcon icon={icon} size={30} color={color} />
+            </View>
+            <Text style={styles.text} numberOfLines={1} >{label}</Text>
         </View>
-        <Text style={[styles.text,{color:color}]} numberOfLines={1} >{label}</Text>
-    </View>
-);
-const styles = StyleSheet.create({
+    );
+};
+const getStyle = (color:string) =>
+    StyleSheet.create({
     container : {
         alignItems:'center',
         paddingBottom:3,
@@ -23,6 +27,7 @@ const styles = StyleSheet.create({
     text : {
         textAlign : 'center',
         fontSize:10,
+        color:color,
     },
 });
 export default TabBarIcon;

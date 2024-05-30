@@ -8,14 +8,14 @@ type BackIconProps = {
     handlePress: () => void;
   };
 const BackIcon : React.FC<BackIconProps> = ({handlePress}) => (
-    <TouchableOpacity style={styles.iconLeft} onPress={handlePress}>
+    <TouchableOpacity style={styles.iconBack} onPress={handlePress}>
       <FontAwesomeIcon icon={faAngleLeft} color="white" size={20} />
     </TouchableOpacity>
   );
 
 
 const styles = StyleSheet.create({
-iconLeft: {
+  iconBack: {
     borderRadius: 10,
     backgroundColor: '#007236',
     padding: 10,

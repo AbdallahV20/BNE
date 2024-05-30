@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React, { useState } from 'react';
@@ -8,7 +7,7 @@ export default function RememberMe() {
     return (
         <Pressable onPress={()=>setRememberMe(!rememberMe)} style={styles.button}>
             <View style={[styles.checkbox, rememberMe ? styles.checked : null]}>
-                <FontAwesomeIcon icon={faCheck} size={15} style={rememberMe ? {display:'flex'} : {display:'none'}} />
+                <FontAwesomeIcon icon={faCheck} size={15} style={rememberMe ? styles.checkedIcon : styles.uncheckedIcon } />
             </View>
             <Text style={styles.rememberMe}>Remember Me</Text>
         </Pressable>
@@ -30,6 +29,12 @@ const styles = StyleSheet.create({
     },
     checked: {
       backgroundColor: 'white',
+    },
+    checkedIcon : {
+      display:'flex',
+    },
+    uncheckedIcon : {
+      display : 'none',
     },
     rememberMe : {
       marginStart:10,

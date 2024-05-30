@@ -1,4 +1,3 @@
-
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { View,Text, StyleSheet,TextInput, TouchableOpacity } from 'react-native';

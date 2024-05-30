@@ -1,10 +1,8 @@
-/* eslint-disable quotes */
-/* eslint-disable react-native/no-inline-styles */
-import { View, Text,Image,ImageSourcePropType, StyleSheet} from "react-native";
-import React, { useContext } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faDollar, faPhone } from "@fortawesome/free-solid-svg-icons";
-import { ThemeContext } from "../../App";
+import { View, Text,Image,ImageSourcePropType, StyleSheet} from 'react-native';
+import React, { useContext } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faDollar, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { ThemeContext } from '../../App';
 
 type propTypes = {
     img:ImageSourcePropType,
@@ -16,24 +14,25 @@ type propTypes = {
 
 export default function Profile({img,name,phone,money,isItem}:propTypes) {
     const {theme} = useContext(ThemeContext);
+    const styles = getStyle(theme,isItem);
     return (
-        <View style={[styles.container,{backgroundColor:theme === 'dark' ? "#282828" : "white"}]}>
-            <Image source={img} style={{ width:isItem ? 70 : 50,  height:isItem ? 70 : 50,borderRadius:12, resizeMode: "cover" }}/>
-            <View style={{justifyContent:"space-between",paddingVertical:isItem ? 0 : 3}}>
-                <Text style={{fontWeight:"bold",color : theme === 'dark' ? 'white' : 'black'}}>{name}</Text>
-                <View style={{rowGap:3}}>
-                    <View style={{alignItems:"center",flexDirection:"row",columnGap:5}}>
-                        <View style={{backgroundColor:"#eee",borderRadius:20,padding:5}}>
+        <View style={styles.container}>
+            <Image source={img} style={styles.img}/>
+            <View style={styles.card}>
+                <Text style={styles.name}>{name}</Text>
+                <View style={styles.body}>
+                    <View >
+                        <View style={styles.icon}>
                             <FontAwesomeIcon size={10} color="#B7B7B7" icon={faPhone} />
                         </View>
-                        <Text style={{color:"#b7b7b7"}}>{phone}</Text>
+                        <Text style={styles.sectionTitle}>{phone}</Text>
                     </View>
                     { money &&
-                    <View style={{alignItems:"center",flexDirection:"row",columnGap:5}}>
-                        <View style={{backgroundColor:"#eee",borderRadius:20,padding:5}}>
+                    <View style={styles.sectionContainer}>
+                        <View style={styles.icon}>
                             <FontAwesomeIcon size={10} color="#B7B7B7" icon={faDollar} />
                         </View>
-                        <Text style={{color:"#b7b7b7"}}>${money}</Text>
+                        <Text style={styles.sectionTitle}>${money}</Text>
                     </View>
                     }
                 </View>
@@ -42,15 +41,46 @@ export default function Profile({img,name,phone,money,isItem}:propTypes) {
     );
 }
 
-const styles = StyleSheet.create({
+const getStyle = (theme:string,isItem:boolean | undefined)=>
+    StyleSheet.create({
     container : {
-        flexDirection:"row",
+        flexDirection:'row',
         marginBottom:15,
         columnGap:15,
-        backgroundColor:'white',
         borderRadius:18,
         shadowColor:'#121212',
         elevation:2,
         padding:15,
+        backgroundColor:theme === 'dark' ? '#282828' : 'white',
     },
+    img : {
+        width:isItem ? 70 : 50,  height:isItem ? 70 : 50,borderRadius:12,
+         resizeMode: 'cover',
+    },
+    card : {
+        justifyContent:'space-between',
+        paddingVertical:isItem ? 0 : 3,
+    },
+    name : {
+        fontWeight:'bold',
+        color : theme === 'dark' ? 'white' : 'black',
+    },
+    body : {
+        rowGap:3,
+    },
+    sectionContainer : {
+        alignItems:'center',
+        flexDirection:'row',
+        columnGap:5,
+    },
+    sectionTitle : {
+        color:'#b7b7b7',
+    },
+    icon : {
+        backgroundColor:'#eee',
+        borderRadius:20,
+        padding:5,
+    },
+
+
 });
