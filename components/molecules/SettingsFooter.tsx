@@ -6,7 +6,7 @@ import React from 'react';
 export default function SettingsFooter() : React.JSX.Element {
     return (
         <View>
-            <Profile img={require('../../images/profile.jpg')} name="Queen Nefertiti" phone="01611761967"/>
+            <Profile img={require('../../assets/images/profile.jpg')} name="Queen Nefertiti" phone="01611761967"/>
             <TouchableOpacity style={styles.elliIcon}>
                 <FontAwesomeIcon icon={faEllipsisVertical} size={22} color="#000"/>
             </TouchableOpacity>

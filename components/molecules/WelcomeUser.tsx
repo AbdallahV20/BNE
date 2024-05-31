@@ -1,21 +1,22 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, { useContext } from 'react';
 import { Text,View,Image, StyleSheet } from 'react-native';
 import { ThemeContext } from '../../App';
 export default function WelcomeUser() : React.JSX.Element {
     const {theme} = useContext(ThemeContext);
+    const styles = getStyle(theme);
     return (
         <View style={styles.container}>
-            <Image source={require('../../images/profile.jpg')} style={styles.img} />
+            <Image source={require('../../assets/images/profile.jpg')} style={styles.img} />
             <View>
-                <Text style={[styles.welcome,{color : theme === 'dark' ? '#b7b7b7' : 'black'}]}>Welcome</Text>
-                <Text style={[styles.name,{color : theme === 'dark' ? '#b7b7b7' : 'black'}]}>Queen Nefertiti</Text>
+                <Text style={styles.welcome}>Welcome</Text>
+                <Text style={styles.name}>Queen Nefertiti</Text>
             </View>
         </View>
     );
 }
 
-const styles = StyleSheet.create({
+const getStyle = (theme:string) =>
+    StyleSheet.create({
     container : {
         flexDirection:'row',
         columnGap:10,
@@ -28,10 +29,10 @@ const styles = StyleSheet.create({
         resizeMode:'cover',
     },
     welcome : {
-        color:'black',
+        color : theme === 'dark' ? '#b7b7b7' : 'black',
     },
     name : {
         fontWeight:'bold',
-        color:'black',
+        color : theme === 'dark' ? '#b7b7b7' : 'black',
     },
 });

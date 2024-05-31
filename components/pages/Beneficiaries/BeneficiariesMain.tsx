@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import { StyleSheet, View } from 'react-native';
 import React, {  useContext, useState } from 'react';
 import BeneficiariesVerticalList from '../../organisms/BeneficiariesVerticalList';
@@ -11,11 +10,12 @@ import { ThemeContext } from '../../../App';
 
 export default function BeneficiariesMain(): React.JSX.Element {
   const { theme } = useContext(ThemeContext);
+  const styles = getStyle(theme);
   const [activeHorizontal, setActiveHorizontal] = useState(true);
 
 
   return (
-      <View style={[styles.container, { backgroundColor: theme === 'dark' ? '#121212' : '#f1f3fb' }]}>
+      <View style={styles.container}>
         <BeneficiariesHeader activeHorizontal={activeHorizontal} setActiveHorizontal={setActiveHorizontal} />
         {activeHorizontal && <BeneficiariesHorizontalList />}
         {!activeHorizontal && <BeneficiariesVerticalList />}
@@ -23,9 +23,11 @@ export default function BeneficiariesMain(): React.JSX.Element {
   );
 }
 
-const styles = StyleSheet.create({
+const getStyle = (theme:string) =>
+  StyleSheet.create({
   container: {
     paddingHorizontal: 17,
     flex: 1,
+    backgroundColor: theme === 'dark' ? '#121212' : '#f1f3fb',
   },
 });

@@ -12,8 +12,8 @@ export default function Success() : React.JSX.Element {
             <View style={styles.overlay} />
 
             <StatusBar barStyle={'light-content'} />
-            <Image style={styles.logo} source={require('../../../images/logologin.png')}/>
-            <Image style={styles.img} source={require('../../../images/succ.png')} />
+            <Image style={styles.logo} source={require('../../../assets/images/logologin.png')}/>
+            <Image style={styles.img} source={require('../../../assets/images/succ.png')} />
             <SafeAreaView style={styles.container}>
                 <View>
                     <Text style={styles.title}>Congratulations</Text>

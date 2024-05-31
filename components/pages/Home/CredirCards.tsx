@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import {Text, View,ScrollView,StyleSheet} from 'react-native';
 import React, { useContext } from 'react';
 import HistoryContainer from '../../molecules/HistoryContainer';
@@ -6,15 +5,16 @@ import CreditCardsContainer from '../../organisms/CreditCardsContainer';
 import { ThemeContext } from '../../../App';
 export default function CredirCards() : React.JSX.Element {
     const {theme} = useContext(ThemeContext);
+    const styles = getStyle(theme);
     return (
-        <ScrollView style={[styles.container,{backgroundColor : theme === 'dark' ? '#121212' : '#F1F3FB'}]}>
+        <ScrollView style={styles.container}>
             <View style={styles.cards}>
                 <CreditCardsContainer />
             </View>
 
 
             <View style={styles.sectionTitleContainer}>
-            <Text style={{fontWeight:'bold',fontSize:20,color:theme === 'dark' ? '#b7b7b7' : '#000'}}>History</Text>
+                <Text style={styles.history}>History</Text>
                 <HistoryContainer />
             </View>
         </ScrollView>
@@ -22,9 +22,10 @@ export default function CredirCards() : React.JSX.Element {
 }
 
 
-const styles = StyleSheet.create({
+const getStyle = (theme:string) => StyleSheet.create({
     container: {
         flex:1,
+        backgroundColor : theme === 'dark' ? '#121212' : '#F1F3FB',
     },
     sectionTitleContainer : {
         marginTop:30,
@@ -37,5 +38,10 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize:20,
         color:'#000',
+    },
+    history : {
+        fontWeight:'bold',
+        fontSize:20,
+        color:theme === 'dark' ? '#b7b7b7' : '#000',
     },
 });

@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {View,Text, StyleSheet} from 'react-native';
 import React, { useContext, useLayoutEffect, useState } from 'react';
@@ -12,6 +11,7 @@ import { AuthStackParamList } from './Auth';
 import { ThemeContext } from '../../../App';
 export default function SetPassword() {
     const {theme} = useContext(ThemeContext);
+    const styles = getStyle(theme);
     const [focus1,setFocus1] = useState(false);
     const [value1,setValue1] = useState('');
 
@@ -52,32 +52,34 @@ export default function SetPassword() {
     },[value1,value2,validation]);
 
     return (
-        <SafeAreaView style={[styles.container,{backgroundColor: theme === 'dark' ? '#121212' : '#f1f3fb'}]}>
+        <SafeAreaView style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View>
-                    <Text  style={[styles.title,theme === 'dark' ? {color:'white'} : {color:'black'}]}>Set Your Password</Text>
+                    <Text  style={styles.title}>Set Your Password</Text>
                     <Text style={styles.subTitle}>Enter a strong password for your online banking account</Text>
                     <SetPasswordInput label="Password" placeholder="Ex:Akhnaton$7000BC" handleFocus={setFocus1} handlePassword={handlePassword} focus={focus1} />
                     <SetPasswordInput label="Confirm Password" placeholder="Re-write Your Password Here!" handleFocus={setFocus2} handlePassword={handleConfirmPassword} focus={focus2} />
                     <ValidationContainer validation={validation} />
                 </View>
                 <View style={styles.submit}>
-                    <CustomButton title="Submit" pressFunction={()=>equal ? navigation.navigate('Success') : null} color={`${equal ? '#007236' : '#B7B7B7'}`}  />
+                    <CustomButton title="Submit" pressFunction={()=>equal ? navigation.navigate('Success') : null} color={equal ? '#007236' : '#B7B7B7'}  />
                 </View>
             </ScrollView>
         </SafeAreaView>
     );
 }
 
-const styles = StyleSheet.create({
+const getStyle = (theme:string) =>
+    StyleSheet.create({
     container : {
         paddingHorizontal : 17,
         flex:1,
         justifyContent:'space-between',
+        backgroundColor: theme === 'dark' ? '#121212' : '#f1f3fb',
     },
     title: {
         fontWeight:'bold',
-        color:'black',
+        color: theme === 'dark' ? 'white' : 'black',
         fontSize:20,
     },
     subTitle : {

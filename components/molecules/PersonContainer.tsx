@@ -11,52 +11,52 @@ export default function PersonContainer() {
                 {
                     id:1,
                     name : 'Akhnaton',
-                    img : require('../../images/Akhnaton.jpg'),
+                    img : require('../../assets/images/Akhnaton.jpg'),
                 },
                 {
                     id:2,
                     name : 'Hatshepsut',
-                    img : require('../../images/hatsh.jpg'),
+                    img : require('../../assets/images/hatsh.jpg'),
                 },
                 {
                     id:3,
                     name : 'Tutankhamon',
-                    img : require('../../images/Tot.jpg'),
+                    img : require('../../assets/images/Tot.jpg'),
                 },
                 {
                     id:4,
                     name : 'Thutmose',
-                    img : require('../../images/Thut.jpg'),
+                    img : require('../../assets/images/Thut.jpg'),
                 },
                 {
                     id:5,
                     name : 'Ramses ii',
-                    img : require('../../images/rams.jpg'),
+                    img : require('../../assets/images/rams.jpg'),
                 },
                 {
                     id:6,
                     name : 'Tutankhamon',
-                    img : require('../../images/Tot.jpg'),
+                    img : require('../../assets/images/Tot.jpg'),
                 },
                 {
                     id:7,
                     name : 'Thutmose',
-                    img : require('../../images/Thut.jpg'),
+                    img : require('../../assets/images/Thut.jpg'),
                 },
                 {
                     id:8,
                     name : 'Ramses ii',
-                    img : require('../../images/rams.jpg'),
+                    img : require('../../assets/images/rams.jpg'),
                 },
                 {
                     id:9,
                     name : 'Thutmose',
-                    img : require('../../images/Thut.jpg'),
+                    img : require('../../assets/images/Thut.jpg'),
                 },
                 {
                     id:10,
                     name : 'Ramses ii',
-                    img : require('../../images/rams.jpg'),
+                    img : require('../../assets/images/rams.jpg'),
                 },
             ];
     return (

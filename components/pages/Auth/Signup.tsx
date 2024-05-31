@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, Text, View } from 'react-native';
 import React, { useContext, useState } from 'react';
@@ -9,8 +8,8 @@ import MobileInput from '../../atoms/MobileInput';
 import { ThemeContext } from '../../../App';
 
 const Signup: React.FC = () => {
-
   const {theme} = useContext(ThemeContext);
+  const styles = getStyle(theme);
   const [focus, setFocus] = useState(false);
   const [value, setValue] = useState('');
   const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
@@ -20,9 +19,9 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <SafeAreaView style={[styles.container,theme === 'dark' ? styles.dark : styles.light]}>
+    <SafeAreaView style={styles.container}>
       <View>
-        <Text style={[styles.title,theme === 'dark' ? {color:'white'} : {color:'black'}]}>Mobile Number</Text>
+        <Text style={styles.title}>Mobile Number</Text>
         <Text style={styles.subTitle}>Enter the mobile number registered in the bank</Text>
         <MobileInput
           focus={focus}
@@ -34,7 +33,7 @@ const Signup: React.FC = () => {
       <View>
         <CustomButton
           title="Next"
-          pressFunction={() =>isValidMobile(value) ? navigation.navigate('verification', { phone: value }) : null}
+          pressFunction={() =>isValidMobile(value) ? navigation.navigate('verification', { phone: value }) : undefined}
           color={isValidMobile(value) ? '#007236' : '#B7B7B7'}
         />
         <Text style={styles.terms}>
@@ -45,32 +44,29 @@ const Signup: React.FC = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  light : {
-      backgroundColor:'#f1f3fb',
-  },
-  dark : {
-      backgroundColor:'#121212',
-  },
-  container: {
-    paddingHorizontal: 17,
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
-  subTitle: {
-    marginTop: 5,
-    fontSize: 16,
-    color:'#B7B7B7',
-  },
-  terms: {
-    marginVertical: 25,
-    textAlign: 'center',
-    color:'#B7B7B7',
-  },
+const getStyle = (theme:string) =>
+  StyleSheet.create({
+    container: {
+      paddingHorizontal: 17,
+      flex: 1,
+      justifyContent: 'space-between',
+      backgroundColor : theme === 'dark' ? '#121212' : '#f1f3fb',
+    },
+    title: {
+      fontWeight: 'bold',
+      fontSize: 20,
+      color : theme === 'dark' ? 'white' : 'black',
+    },
+    subTitle: {
+      marginTop: 5,
+      fontSize: 16,
+      color:'#B7B7B7',
+    },
+    terms: {
+      marginVertical: 25,
+      textAlign: 'center',
+      color:'#B7B7B7',
+    },
 });
 
 export default Signup;

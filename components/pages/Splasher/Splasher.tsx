@@ -7,6 +7,7 @@ import { RootStackParamList, ThemeContext } from '../../../App';
 
 export default function Splasher(): React.JSX.Element {
     const {theme} = useContext(ThemeContext);
+    const styles = getStyle(theme);
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     useLayoutEffect(() => {
         const timer = setTimeout(() => {
@@ -16,27 +17,23 @@ export default function Splasher(): React.JSX.Element {
         return () => clearTimeout(timer);
     }, [navigation]);
     return (
-        <View style={[styles.container,theme === 'dark' ? styles.dark : styles.light]}>
+        <View style={[styles.container]}>
             <View style={styles.centered}>
-                <Image source={require('../../../images/minilogo.png')} />
+                <Image source={require('../../../assets/images/minilogo.png')} />
             </View>
             <View style={styles.bottomCentered}>
-                <Image source={require('../../../images/minilogo2.png')} />
+                <Image source={require('../../../assets/images/minilogo2.png')} />
             </View>
         </View>
     );
 }
 
-const styles = StyleSheet.create({
-    light : {
-        backgroundColor:'#f1f3fb',
-    },
-    dark : {
-        backgroundColor:'#121212',
-    },
+const getStyle = (theme:string) =>
+    StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'space-between',
+        backgroundColor : theme === 'dark' ? '#121212' : '#f1f3fb',
     },
     centered: {
         flex: 1,

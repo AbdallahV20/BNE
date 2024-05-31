@@ -5,7 +5,7 @@ export default function LoginHeader() : React.JSX.Element {
     return (
     <View style={styles.header}>
         <CustomWhiteButton text="AR"/>
-        <Image  source={require('../../images/logologin.png')}/>
+        <Image  source={require('../../assets/images/logologin.png')}/>
     </View>
     );
 }

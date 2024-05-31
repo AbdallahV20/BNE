@@ -21,7 +21,7 @@ export default function Profile({img,name,phone,money,isItem}:propTypes) {
             <View style={styles.card}>
                 <Text style={styles.name}>{name}</Text>
                 <View style={styles.body}>
-                    <View >
+                    <View style={styles.sectionContainer}>
                         <View style={styles.icon}>
                             <FontAwesomeIcon size={10} color="#B7B7B7" icon={faPhone} />
                         </View>

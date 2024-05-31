@@ -6,7 +6,7 @@ import LoginHeader from '../../molecules/LoginHeader';
 
 export default function Login(): React.JSX.Element {
     return (
-        <ImageBackground style={styles.container} source={require('../../../images/background.jpg')}>
+        <ImageBackground style={styles.container} source={require('../../../assets/images/background.jpg')}>
             <View style={styles.overlay} />
 
             <SafeAreaView style={styles.safeArea}>

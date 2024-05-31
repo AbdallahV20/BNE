@@ -7,9 +7,9 @@ type IconProps = {
     label: string;
     icon: IconProp;
   };
-const TabBarIcon =  ({ color,label,icon }:IconProps) =>{
+const TabBarIcon =  ({ color,label,icon }:IconProps) : React.ReactElement =>{
     const styles = getStyle(color);
-    (
+    return (
         <View >
             <View style={styles.container}>
                 <FontAwesomeIcon icon={icon} size={30} color={color} />

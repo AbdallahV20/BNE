@@ -10,7 +10,7 @@ import { BeneficiariesStackProps, DataContext } from '../pages/Beneficiaries/Ben
 export default function BenHorizontalList() : React.JSX.Element {
     const {data} = useContext(DataContext);
     const navigation = useNavigation<NativeStackNavigationProp<BeneficiariesStackProps>>();
-    const emptyList = ()=> <EmptyList add={true} img={require('../../images/emptyList.png')} title="No Beneficiaries" subTitle="You don’t have beneficiaries, add some so you can send money"/>;
+    const emptyList = ()=> <EmptyList add={true} img={require('../../assets/images/emptyList.png')} title="No Beneficiaries" subTitle="You don’t have beneficiaries, add some so you can send money"/>;
     return (
         <FlatList
             data={data}

@@ -1,6 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, { useState } from 'react';
-import { View,Text,StyleSheet, useWindowDimensions } from 'react-native';
+import { View,Text,StyleSheet } from 'react-native';
 import { faAt, faLock } from '@fortawesome/free-solid-svg-icons';
 import FingerPrint from '../atoms/FingerPrint';
 import {useNavigation } from '@react-navigation/native';
@@ -13,7 +12,6 @@ import { RootStackParamList } from '../../App';
 import { AuthStackParamList } from '../pages/Auth/Auth';
 import LoginFooter from '../molecules/LoginFooter';
 export default function LoginForm() {
-    const windowWidth = useWindowDimensions().width;
     const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList & RootStackParamList>>();
     const [usename,setusename] = useState('');
     const [password,setpassword] = useState('');
@@ -42,9 +40,9 @@ export default function LoginForm() {
       clearInputs();
     }
     return (
-        <ScrollView contentContainerStyle={{justifyContent:'space-between',flexGrow:1}} showsVerticalScrollIndicator={false}>
+        <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
             <View>
-              <Text style={[styles.title,{fontSize:windowWidth > 410 ? 40 : 35}]}>Welcome to The National Bank of Egypt</Text>
+              <Text style={styles.title}>Welcome to The National Bank of Egypt</Text>
             </View>
             <View>
               <LoginInput value={usename} label="Username" icon={faAt} handleChange={(value)=>setusename(value)} />
@@ -66,9 +64,14 @@ export default function LoginForm() {
 
 
 const styles = StyleSheet.create({
+      container : {
+        justifyContent:'space-between',
+        flexGrow:1,
+      },
       title : {
         color:'#fff',
         fontWeight:'bold',
+        fontSize:38,
       },
       errMsg : {
         fontWeight:'bold',

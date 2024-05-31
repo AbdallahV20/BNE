@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, { useContext, useLayoutEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Picker from '../../atoms/Picker';
@@ -13,6 +12,7 @@ const TransferForm: React.FC = () => {
     const navigation = useNavigation<NavigationProp<TransferStackProps>>();
     const [formFilled, setFormFilled] = useState(false);
     const {theme} = useContext(ThemeContext);
+    const styles = getStyle(theme);
     // State variables for form inputs
     const [transferType, setTransferType] = useState<string>('');
     const [transferFrom, setTransferFrom] = useState<string>('');
@@ -40,8 +40,8 @@ const TransferForm: React.FC = () => {
         }
     }
     return (
-        <View style={[styles.container,{backgroundColor:theme === 'dark' ? '#121212' : '#f1f3fb'}]}>
-            <Text style={[styles.title,{color:theme === 'dark' ? '#b7b7b7' : 'black'}]}>Transfer</Text>
+        <View style={styles.container}>
+            <Text style={styles.title}>Transfer</Text>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Picker value={transferType} handleChange={(value) => setTransferType(value)} title="Type of transfer" choice1="Between your accounts" choice2="To another account" />
                 <Picker value={transferFrom} handleChange={(value) => setTransferFrom(value)} title="Transfer from" choice1="042-653214521245 - $2,145,5874.25" choice2="056-32154875423 - $1,523.48" />
@@ -56,15 +56,18 @@ const TransferForm: React.FC = () => {
     );
 };
 
-const styles = StyleSheet.create({
+const getStyle = (theme:string) =>
+    StyleSheet.create({
     container: {
         paddingHorizontal: 17,
         flex: 1,
+        backgroundColor:theme === 'dark' ? '#121212' : '#f1f3fb',
     },
     title: {
         marginBottom: 15,
         fontWeight: 'bold',
         fontSize: 20,
+        color:theme === 'dark' ? '#b7b7b7' : 'black',
     },
     btn: {
         marginBottom: 5,

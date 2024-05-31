@@ -25,15 +25,13 @@ const Auth: React.FC = () => {
   const {theme} = useContext(ThemeContext);
   const iconBack = () => <BackIcon handlePress={()=>navigation.goBack()} />;
 
-  const logo = () => <Image style={styles.logo} source={require('../../../images/logo.png')} />;
-
+  const logo = () => <Image style={styles.logo} source={require('../../../assets/images/logo.png')} />;
+  const styles = getStyle(theme);
   const screenOptions: NativeStackNavigationOptions = {
     headerLeft:iconBack,
     headerRight: logo,
     title: '',
-    headerStyle: {
-      backgroundColor: theme === 'dark'  ? '#121212' : '#f1f3fb',
-    },
+    headerStyle: styles.header,
     headerShadowVisible: false,
   };
 
@@ -51,9 +49,13 @@ const Auth: React.FC = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const getStyle = (theme:string) =>
+  StyleSheet.create({
   logo: {
     marginTop: 5,
+  },
+  header : {
+    backgroundColor: theme === 'dark'  ? '#121212' : '#f1f3fb',
   },
 });
 

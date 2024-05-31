@@ -5,7 +5,7 @@ import { ThemeContext } from '../../App';
 type Props = {
     name: string;
     date: string;
-    money: string;
+    money?: string;
     img?: ImageSourcePropType;
     id: number;
     length: number;
@@ -19,20 +19,21 @@ export default function History({ name, date, money, img, id, length }: Props) {
         <View style={styles.container}>
             <View style={styles.contentContainer}>
                 {img && <Image style={styles.image} source={img} />}
-                <View style={styles.textContainer}>
+                <View>
                     <Text style={styles.name}>{name}</Text>
                     <Text style={styles.date}>{date}</Text>
                 </View>
             </View>
-            <Text style={styles.money}>{money}</Text>
+            {money &&
+            <Text style={styles.money}>{money}</Text>}
         </View>
     );
 }
 
 const getStyles = (theme: string, id: number, length: number) => StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent:'space-between',
+        flexDirection:'row',
         alignItems: 'center',
         borderBottomColor: '#B7B7B773',
         borderBottomWidth: id === length ? 0 : 1,
@@ -49,23 +50,17 @@ const getStyles = (theme: string, id: number, length: number) => StyleSheet.crea
         borderRadius: 10,
         marginEnd: 10,
     },
-    textContainer: {
-        flex: 1,
-    },
     name: {
         fontSize: 18,
         marginBottom: 3,
         color: theme === 'dark' ? '#b7b7b7' : 'black',
-        fontFamily: 'GemunuLibre-Regular',
     },
     date: {
         color: '#b7b7b7',
-        fontFamily: 'GemunuLibre-Regular',
     },
     money: {
-        fontSize: 18,
-        fontWeight: 'bold',
+        fontSize: 16,
+        fontWeight:'bold',
         color: theme === 'dark' ? '#b7b7b7' : 'black',
-        fontFamily: 'GemunuLibre-Regular',
     },
 });
